@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row mb-4">
+  <div class="col-12">
+    <h4 class="fw-bold" style="color:#1a237e">
+      <i class="bi bi-calculator me-2"></i>CGPA Calculator
+    </h4>
+  </div>
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-4">
+    <div class="card stat-card p-4 text-center"
+      style="background:linear-gradient(135deg,#1a237e,#283593);">
+      <div style="font-size:50px">🎓</div>
+      <div class="display-4 fw-bold text-white">{{ cgpa }}</div>
+      <div class="text-white-50">Your CGPA</div>
+      <div class="mt-2">
+        {% if cgpa >= 9 %}
+          <span class="badge bg-warning text-dark">Outstanding 🏆</span>
+        {% elif cgpa >= 8 %}
+          <span class="badge bg-success">Excellent ⭐</span>
+        {% elif cgpa >= 7 %}
+          <span class="badge bg-info">Good 👍</span>
+        {% elif cgpa >= 6 %}
+          <span class="badge bg-warning">Average 📚</span>
+        {% else %}
+          <span class="badge bg-danger">Needs Improvement 💪</span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <div class="card stat-card p-4">
+      <h5 class="fw-bold mb-3" style="color:#1a237e">
+        <i class="bi bi-table me-2"></i>CGPA Breakdown
+      </h5>
+      <table class="table table-hover">
+        <thead style="background:#f8f9fa;">
+          <tr>
+            <th>Subject</th>
+            <th>Credits</th>
+            <th>Grade</th>
+            <th>Grade Point</th>
+            <th>Credits × GP</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for mark in marks %}
+          <tr>
+            <td>{{ mark.subject.name }}</td>
+            <td>{{ mark.subject.credits }}</td>
+            <td><span class="badge bg-primary">{{ mark.grade }}</span></td>
+            <td>{{ mark.grade_point }}</td>
+            <td><strong>{{ mark.subject.credits|add:mark.grade_point }}</strong></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr class="table-dark">
+            <td colspan="4"><strong>CGPA</strong></td>
+            <td><strong>{{ cgpa }}</strong></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="card stat-card p-4">
+  <h5 class="fw-bold mb-3" style="color:#1a237e">
+    <i class="bi bi-bar-chart me-2"></i>Anna University Grade Scale
+  </h5>
+  <div class="row g-2 text-center">
+    <div class="col">
+      <div class="p-2 rounded" style="background:#4CAF50;color:white">
+        <strong>O</strong><br/>91-100<br/>GP:10
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-2 rounded" style="background:#2196F3;color:white">
+        <strong>A+</strong><br/>81-90<br/>GP:9
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-2 rounded" style="background:#03A9F4;color:white">
+        <strong>A</strong><br/>71-80<br/>GP:8
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-2 rounded" style="background:#FF9800;color:white">
+        <strong>B+</strong><br/>61-70<br/>GP:7
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-2 rounded" style="background:#FF5722;color:white">
+        <strong>B</strong><br/>51-60<br/>GP:6
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-2 rounded" style="background:#9C27B0;color:white">
+        <strong>C</strong><br/>45-50<br/>GP:5
+      </div>
+    </div>
+    <div class="col">
+      <div class="p-2 rounded" style="background:#F44336;color:white">
+        <strong>U</strong><br/>Below 45<br/>GP:0
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row mb-4">
+  <div class="col-12">
+    <div class="card stat-card p-4" style="background: linear-gradient(135deg, #1a237e, #283593);">
+      <div class="d-flex align-items-center gap-3">
+        <div style="font-size:60px">🎓</div>
+        <div>
+          <h3 class="text-white fw-bold mb-1">Welcome, {{ user.first_name }}!</h3>
+          <p class="text-white-50 mb-1">
+            <i class="bi bi-card-text me-1"></i>Roll No: {{ profile.roll_no }}
+          </p>
+          <p class="text-white-50 mb-0">
+            <i class="bi bi-building me-1"></i>{{ profile.department }} |
+            Year {{ profile.year }} |
+            Semester {{ profile.semester }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK STATS -->
+<div class="row g-3 mb-4">
+  <div class="col-md-3">
+    <div class="card stat-card p-3 text-center">
+      <div style="font-size:36px">📊</div>
+      <div class="fw-bold fs-3" style="color:#1a237e">{{ cgpa }}</div>
+      <div class="text-muted small">Current CGPA</div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card stat-card p-3 text-center">
+      <div style="font-size:36px">📚</div>
+      <div class="fw-bold fs-3" style="color:#1a237e">{{ total_subjects }}</div>
+      <div class="text-muted small">Total Subjects</div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card stat-card p-3 text-center">
+      <div style="font-size:36px">✅</div>
+      <div class="fw-bold fs-3" style="color:#2e7d32">{{ passed_subjects }}</div>
+      <div class="text-muted small">Subjects Passed</div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card stat-card p-3 text-center">
+      <div style="font-size:36px">❌</div>
+      <div class="fw-bold fs-3" style="color:#c62828">{{ failed_subjects }}</div>
+      <div class="text-muted small">Arrears</div>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK LINKS -->
+<div class="row g-3">
+  <div class="col-md-6">
+    <div class="card stat-card p-4">
+      <h5 class="fw-bold mb-3" style="color:#1a237e">
+        <i class="bi bi-lightning-fill me-2"></i>Quick Actions
+      </h5>
+      <div class="d-grid gap-2">
+        <a href="/marks" class="btn btn-primary-custom">
+          <i class="bi bi-journal-text me-2"></i>View My Marks
+        </a>
+        <a href="/cgpa" class="btn btn-outline-primary">
+          <i class="bi bi-calculator me-2"></i>CGPA Calculator
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card stat-card p-4">
+      <h5 class="fw-bold mb-3" style="color:#1a237e">
+        <i class="bi bi-info-circle me-2"></i>Student Info
+      </h5>
+      <table class="table table-sm">
+        <tr><td class="text-muted">Name</td><td><strong>{{ user.get_full_name }}</strong></td></tr>
+        <tr><td class="text-muted">Roll No</td><td><strong>{{ profile.roll_no }}</strong></td></tr>
+        <tr><td class="text-muted">Department</td><td><strong>{{ profile.department }}</strong></td></tr>
+        <tr><td class="text-muted">Year</td><td><strong>Year {{ profile.year }}</strong></td></tr>
+        <tr><td class="text-muted">Semester</td><td><strong>Semester {{ profile.semester }}</strong></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import StudentProfile, Marks
 
+
 @login_required(login_url='/login/')
 def dashboard_view(request):
     try:
@@ -72,3 +73,8 @@ def cgpa_view(request):
         })
     except StudentProfile.DoesNotExist:
         return redirect('/login/')
+
+
+@login_required(login_url='/login/')
+def components_view(request):
+    return render(request, 'components.html')

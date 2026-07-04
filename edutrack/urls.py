@@ -13,8 +13,9 @@ urlpatterns = [
     path('dashboard/', result_views.dashboard_view),
     path('marks/', result_views.marks_view),
     path('cgpa/', result_views.cgpa_view),
+    path('components/', result_views.components_view),
 
-    # Password Reset URLs
+    # Password Reset
     path('password-reset/',
         django_auth_views.PasswordResetView.as_view(
             template_name='accounts/password_reset.html'
